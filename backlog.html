@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Game Backlog</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="list-page">
+  <nav class="navbar">
+    <a href="index.html" >Home</a>
+    <a href="backlog.html">Backlog</a>
+  </nav>
+  
+  <header class="list-page">
+    <h1>My Game Backlog</h1>
+    <button id="addGameBtn">+ Add Game</button>
+  </header>
+
+  <div id="gameFormSection" class="popup hidden">
+    <form id="gameForm">
+      <h2>Add New Game</h2>
+
+      <label>Title:</label>
+      <input type="text" id="titleInput" required />
+      <br>
+      <br>
+
+      <label>Start Date:</label>
+      <input type="date" id="startDateInput" required />
+      <br>
+      <br>
+
+      <label>Notes:</label>
+      <textarea id="notesInput"></textarea>
+
+      <div class="form-buttons">
+        <button type="submit">Add Game</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <main>
+    <div id="gameList"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
