@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Game Backlog</title>
+  <title>Backlog List</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="list-page">
@@ -11,28 +11,33 @@
     <a href="index.html" >Home</a>
     <a href="backlog.html">Backlog</a>
   </nav>
-  
+
+
   <header class="list-page">
     <h1>My Game Backlog</h1>
     <button id="addGameBtn">+ Add Game</button>
   </header>
 
-  <div id="gameFormSection" class="popup hidden">
+  <main>
+    <div id="gameList" class="game-list"></div>
+  </main>
+
+  <!-- Game Form Popup -->
+  <div id="gameFormPopup" class="popup hidden">
     <form id="gameForm">
       <h2>Add New Game</h2>
 
+      <label>Cover Art:</label>
+      <input type="file" id="coverInput" accept="image/*" />
+
       <label>Title:</label>
       <input type="text" id="titleInput" required />
-      <br>
-      <br>
 
       <label>Start Date:</label>
       <input type="date" id="startDateInput" required />
-      <br>
-      <br>
 
       <label>Notes:</label>
-      <textarea id="notesInput"></textarea>
+      <textarea id="notesInput" rows="3"></textarea>
 
       <div class="form-buttons">
         <button type="submit">Add Game</button>
@@ -41,9 +46,38 @@
     </form>
   </div>
 
-  <main>
-    <div id="gameList"></div>
-  </main>
+  <!-- Notes Popup -->
+  <div id="notesPopup" class="popup hidden">
+    <form id="notesForm">
+      <h2>Edit Notes</h2>
+      <textarea id="notesTextarea" rows="6"></textarea>
+      <div class="form-buttons">
+        <button type="submit">Save</button>
+        <button type="button" id="cancelNotesBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Play Session Popup -->
+  <div id="sessionPopup" class="popup hidden">
+    <form id="sessionForm">
+      <h2>Add Play Session</h2>
+
+      <label>Start Time:</label>
+      <input type="datetime-local" id="sessionStartInput" required />
+
+      <label>End Time:</label>
+      <input type="datetime-local" id="sessionEndInput" required />
+
+      <label>Notes:</label>
+      <textarea id="sessionNotesInput" rows="3"></textarea>
+
+      <div class="form-buttons">
+        <button type="submit">Add Session</button>
+        <button type="button" id="cancelSessionBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
 
   <script src="script.js"></script>
 </body>
