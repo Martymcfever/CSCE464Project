@@ -54,6 +54,23 @@ cancelSessionBtn.addEventListener("click", () => {
   currentGameForSession = null;
 });
 
+const RAWG_API_KEY = "2ecafaff43a94609a6cbf81a8760d18d"; // replace with your key
+
+async function fetchCoverImage(title) {
+  const url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(title)}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.results && data.results.length > 0) {
+      return data.results[0].background_image || null;
+    }
+  } catch (error) {
+    console.error("Error fetching cover art:", error);
+  }
+  return null;
+}
+
+
 sessionForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -74,42 +91,32 @@ sessionForm.addEventListener("submit", (e) => {
 });
 
 // Handle form submission
-gameForm.addEventListener("submit", function (e) {
+gameForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const title = document.getElementById("titleInput").value;
   const startDate = document.getElementById("startDateInput").value;
   const notes = document.getElementById("notesInput").value;
-  const coverFile = document.getElementById("coverInput").files[0];
 
-  const reader = new FileReader();
-  reader.onload = function () {
-    const coverDataURL = reader.result;
+  const cover = await fetchCoverImage(title); // 🔥
 
-    const game = {
-      id: Date.now(),
-      title,
-      startDate,
-      notes,
-      cover: coverDataURL,
-      endDate: null,
-      rating: null,
-      sessions: []
-    };
-
-    games.push(game);
-    renderGameCard(game);
-    gameForm.reset();
-    gameFormPopup.classList.add("hidden");
+  const game = {
+    id: Date.now(),
+    title,
+    startDate,
+    notes,
+    cover: cover || "https://via.placeholder.com/100x150?text=No+Cover",
+    endDate: null,
+    rating: null,
+    sessions: []
   };
 
-  if (coverFile) {
-    reader.readAsDataURL(coverFile);
-  } else {
-    reader.result = "https://via.placeholder.com/100x150?text=No+Cover";
-    reader.onload();
-  }
+  games.push(game);
+  renderGameCard(game);
+  gameForm.reset();
+  gameFormPopup.classList.add("hidden");
 });
+
 
 function renderGameCard(game) {
   const card = document.createElement("div");
@@ -117,7 +124,7 @@ function renderGameCard(game) {
 
   card.innerHTML = `
     <div class="game-cover">
-      <img src="${game.cover}" alt="${game.title} Cover" width="100">
+      <img src="${game.cover}" alt="${game.title} Cover" class="game-cover-img">
     </div>
     <div class="game-info">
       <h3>${game.title}</h3>
@@ -199,3 +206,5 @@ function updateSessionDropdown(game) {
 
   container.classList.remove("hidden");
 }
+
+
