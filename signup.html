@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.php">Home</a>
+        </div>
+    </nav>
+  <div class="auth-container">
+    <h2>Create an Account</h2>
+    <form action="add_user.php" method="POST">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <div class="password-wrapper-horizontal">
+        <input type="password" name="password" id="signup-password" placeholder="Password" required />
+        <button type="button" class="toggle-password-btn-inline" onclick="togglePassword('signup-password', this)">Show</button>
+      </div>
+      
+      
+      
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+  </div>
+
+  <script>
+    function togglePassword(inputId, button) {
+      const input = document.getElementById(inputId);
+      const isPassword = input.type === "password";
+      input.type = isPassword ? "text" : "password";
+      button.textContent = isPassword ? "Hide" : "Show";
+    }
+  </script>
+
+<div id="error-popup" class="error-popup hidden">
+  <div class="error-popup-content">
+    <p id="error-message">Error!</p>
+    <button onclick="dismissError()">OK</button>
+  </div>
+</div>
+
+<script>
+  // Check for ?error= in URL
+  const params = new URLSearchParams(window.location.search);
+  const errorType = params.get("error");
+
+  const errorMessages = {
+    wrongpass: "Incorrect password.",
+    notfound: "User not found.",
+    taken: "That email or username is already taken.",
+    invalid: "Invalid login. Please try again."
+  };
+
+  if (errorType && errorMessages[errorType]) {
+    document.getElementById("error-message").textContent = errorMessages[errorType];
+    document.getElementById("error-popup").classList.remove("hidden");
+  }
+
+  function dismissError() {
+    document.getElementById("error-popup").classList.add("hidden");
+    history.replaceState(null, "", window.location.pathname); // Clear ?error from URL
+  }
+</script>
+
+  
+  
+  
+</body>
+</html>

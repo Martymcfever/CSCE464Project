@@ -242,12 +242,33 @@ header.list-page {
 
 .navbar {
   display: flex;
+  justify-content: space-between; /* NEW */
+  align-items: center;
   background-color: #1f2937;
   padding: 1rem 2rem;
   font-size: 1.1rem;
-  gap: 1rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.signin-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.signin-link:hover {
+  background-color: #374151;
+}
+
 
 
 .navbar a {
@@ -274,3 +295,226 @@ header.list-page {
   object-fit: cover;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+/* Styled like game form popup */
+#viewSessionsPopup form.popup-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.session-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.session-popup-item {
+  background-color: #f3f4f6;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.session-popup-item:hover {
+  background-color: #e5e7eb;
+}
+
+.session-details {
+  display: none;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.session-popup-item.expanded .session-details {
+  display: block;
+}
+
+/* Right-side session button styling */
+.session-preview-button-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.view-sessions-btn {
+  background-color: #f3f4f6;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.2s;
+}
+
+.view-sessions-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.game-card {
+  position: relative;
+}
+
+.popup-message {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #10b981;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.popup-message.hidden {
+  display: none;
+}
+
+#endDatePopup form {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+#endDateForm input[type="date"] {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+#rateGameForm label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+#ratingSlider,
+#ratingInput {
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+  padding: 0.25rem;
+  font-size: 1rem;
+}
+
+/* Gradient track fill */
+input[type="range"]#ratingSlider {
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(to right, red, orange, yellow, green);
+  border-radius: 3px;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+input[type="range"]#ratingSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid #6b7280;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]#ratingSlider.pulse::-webkit-slider-thumb {
+  animation: pulseThumb 0.4s ease;
+}
+
+@keyframes pulseThumb {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.logout-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.375rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Container inside the popup */
+.logout-box {
+  background-color: #f3f4f6;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Button layout */
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.logout-buttons button {
+  background-color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-buttons button:hover {
+  background-color: #e5e7eb;
+}
+
+
+.game-actions button:last-child {
+  background-color: #ef4444;
+  color: white;
+}
+
+.game-actions button:last-child:hover {
+  background-color: #dc2626;
+}
+
+.user-email {
+  color: white;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+
+
+
+
