@@ -29,20 +29,24 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="list-page">
-  <nav class="navbar">
-    <div class="nav-left">
-      <a href="index.php">Home</a>
-      <a href="backlog.php">Backlog</a>
-    </div>
-    <div class="nav-right">
-      <?php if ($username && $email): ?>
-        <span class="user-email"><?= htmlspecialchars($username) ?> (<?= htmlspecialchars($email) ?>)</span>
-        <button id="logoutBtn" class="logout-btn">Logout</button>
-      <?php else: ?>
-        <a href="login.html" class="login-link">Sign In</a>
-      <?php endif; ?>
-    </div>
-  </nav>
+<nav class="navbar">
+  <button class="hamburger" id="hamburgerBtn">&#9776;</button>
+
+  <div class="nav-menu" id="navMenu">
+    <a href="index.php">Home</a>
+    <a href="backlog.php">Backlog</a>
+  </div>
+
+  <div class="nav-left always-visible">
+    <?php if ($username && $email): ?>
+      <span class="user-email"><?= htmlspecialchars($username) ?> (<?= htmlspecialchars($email) ?>)</span>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    <?php else: ?>
+      <a href="login.html" class="signin-link">Sign In</a>
+    <?php endif; ?>
+  </div>
+</nav>
+
   
 
 
@@ -202,6 +206,15 @@ if (isset($_SESSION['user_id'])) {
     }
   </script>
   
+  <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburgerBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+  </script>
+
   
 
 

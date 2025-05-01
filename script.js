@@ -237,8 +237,10 @@ function renderGameCard(game) {
         <button class="session-btn" title="Add Play Session">➕</button>
       </div>
     </div>
-    <div class="session-preview-button-container">
-      <button class="view-sessions-btn">📋 View my game sessions</button>
+    <div class="session-preview-wrapper">
+      <div class="session-preview-button-container">
+        <button class="view-sessions-btn">📋 View my game sessions</button>
+      </div>
     </div>
   `;
 
